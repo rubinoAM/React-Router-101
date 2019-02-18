@@ -33,6 +33,12 @@ class Movie extends Component{
 	}
 
 	render(){
+        /* React Router adds these props:
+        match = params/wildcard
+        history = all past history of react-router
+        location = same as match but w/o bulk and with key */
+
+        console.log(this.props.match);
 		if(this.state.movie.title === undefined){
 			return(
 				<h1>Loading...</h1>
@@ -40,11 +46,13 @@ class Movie extends Component{
 		}
 		var movie = this.state.movie;
 		return(
-			<div>
-				<img src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`} />
-				{movie.title}
-				{movie.budget}
-				{movie.tagline}
+			<div className="movie-container">
+				<img src={`http://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} />
+				<div className="movie-info">
+                    <h3>{movie.title}</h3>
+                    <div>${movie.budget}</div>
+                    <i>{movie.tagline}</i>
+                </div>
 			</div>
 		)
 	}

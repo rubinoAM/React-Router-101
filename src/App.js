@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import About from './About';
 import Home from './Home';
 import MovieList from './MovieList';
+import Movie from './Movie';
 
 class App extends Component {
   render() {
@@ -16,9 +17,11 @@ class App extends Component {
       <Router>
         <div className="App">
           {/* Don't use <a> tags in React Router! Use link components!*/}
-          <Link to="/">Home</Link>
-          <Link to="/about">About</Link>
-          <Link to="/movies">Movies</Link>
+          <div className="navbar">
+            <Link className="nav-link" to="/">Home</Link>
+            <Link className="nav-link" to="/about">About</Link>
+            <Link className="nav-link" to="/movies">Movies</Link>
+          </div>
 
           {/*Use the Route component to set up a path match 
           If the path matches the browser path, it'll render whatever is given as a component prop 
@@ -29,7 +32,8 @@ class App extends Component {
            return (<Home superHero={superHero}/>)
           }} />
           <Route path="/about" component={About} />
-          <Route path="/movies" component={MovieList} />
+          <Route exact path="/movies" component={MovieList} />
+          <Route path="/movies/:movieId" component={Movie} />
         </div>
       </Router>
     );
