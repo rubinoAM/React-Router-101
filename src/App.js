@@ -9,6 +9,8 @@ import MovieList from './MovieList';
 
 class App extends Component {
   render() {
+    const superHero = "She-Hulk";
+
     //The Router holds everything it needs to control like a container
     return (
       <Router>
@@ -23,7 +25,9 @@ class App extends Component {
           
           If you have a path by itself, it'll look for that path anywhere in that URL
           So you'll need to put exact into the Route tag to remedy that */}
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={()=>{
+           return (<Home superHero={superHero}/>)
+          }} />
           <Route path="/about" component={About} />
           <Route path="/movies" component={MovieList} />
         </div>
